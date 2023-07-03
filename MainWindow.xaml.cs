@@ -31,6 +31,7 @@ namespace DirToText
                     }
                     else
                     {
+                        //TODO: does not trigger properly
                         TB_Message.Text = "❌ Folder has no contents!";
                     }
 
@@ -41,51 +42,6 @@ namespace DirToText
         private void Btn_Export_Click(object sender, RoutedEventArgs e)
         {
 
-            //string selectedFolder = Lbl_SelectedFolder.Content as string;
-            //if (!string.IsNullOrEmpty(selectedFolder) && Directory.Exists(selectedFolder))
-            //{
-            //    string[] fileNames = Directory.GetFiles(selectedFolder);
-
-            //    string selectedFormat = GetSelectedFormat();
-
-            //    string outputFile = Path.Combine(selectedFolder, "file_names" + selectedFormat);
-            //    using (StreamWriter writer = new StreamWriter(outputFile))
-            //    {
-            //        // Includes folder name at top of output file
-            //        if (ChkBox_IncludeFolderName.IsChecked == true)
-            //        {
-            //            string folderName = Path.GetFileName(selectedFolder);
-            //            writer.WriteLine("Folder: " + folderName);
-            //            writer.WriteLine();
-            //        }
-
-            //        foreach (string fileName in fileNames)
-            //        {
-            //            // Include full file path (includes file extension)
-            //            if (ChkBox_IncludeFilepath.IsChecked == true)
-            //            {
-            //                writer.WriteLine(fileName);
-            //            }
-            //            else
-            //            {
-            //                string fileNameToWrite = fileName;
-
-            //                // Exclude file extension (but if 'full file path' selected it will override this)
-            //                if (ChkBox_IncludeFileExt.IsChecked == false)
-            //                {
-            //                    fileNameToWrite = Path.GetFileNameWithoutExtension(fileName);
-            //                }
-
-            //                writer.WriteLine(fileNameToWrite);
-            //            }
-            //        }
-            //    }
-            //    TB_Message.Text = "✔ File names exported successfully to selected folder!";
-            //}
-            //else
-            //{
-            //    TB_Message.Text = "❌ Please select a valid folder first!";
-            //}
             string selectedFolder = Lbl_SelectedFolder.Content as string;
             if (string.IsNullOrEmpty(selectedFolder) || !Directory.Exists(selectedFolder))
             {
@@ -100,7 +56,7 @@ namespace DirToText
             string outputFile = Path.Combine(selectedFolder, "file_names" + selectedFormat);
             using (StreamWriter writer = new StreamWriter(outputFile))
             {
-                // Include folder name at the top of the file if the checkbox is checked
+                // Includes folder name at top of output file
                 if (ChkBox_IncludeFolderName.IsChecked == true)
                 {
                     string folderName = Path.GetFileName(selectedFolder);
@@ -110,7 +66,7 @@ namespace DirToText
 
                 foreach (string fileName in fileNames)
                 {
-                    // Include full file path if the checkbox is checked
+                    // Include full file path (includes file extension)
                     if (ChkBox_IncludeFilepath.IsChecked == true)
                     {
                         writer.WriteLine(fileName);
@@ -119,7 +75,7 @@ namespace DirToText
                     {
                         string fileNameToWrite = fileName;
 
-                        // Exclude file extension if the checkbox is not checked
+                        // Exclude file extension (but if 'full file path' selected it will override this)
                         if (ChkBox_IncludeFileExt.IsChecked == false)
                         {
                             fileNameToWrite = Path.GetFileNameWithoutExtension(fileName);
@@ -150,6 +106,7 @@ namespace DirToText
             }
             else
             {
+                // as a failsafe will always revert to .xt format
                 return ".txt";
             }
         }
