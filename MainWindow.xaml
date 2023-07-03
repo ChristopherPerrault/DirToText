@@ -7,16 +7,19 @@
 	xmlns:local="clr-namespace:DirToText"
 	mc:Ignorable="d"
 	Title="DirToText"
-	Height="500"
+	Height="420"
 	Width="520"
 	ResizeMode='NoResize'>
+
+	<!-- DirToText created by Christopher Perrault in July 2023. Unlicensed, free to use. -->
+
 	<Grid>
 		<GroupBox
 			Header='Options'
 			Margin='10,120,275,0'
 			FontSize='16'
 			VerticalAlignment='Top'
-			Height='97'>
+			Height='100'>
 			<StackPanel
 				Height='64'>
 				<CheckBox
@@ -30,51 +33,13 @@
 					Content='Include full filepath' />
 			</StackPanel>
 		</GroupBox>
-		<Button
-			Name='Btn_SelectFolder'
-			Click='Btn_SelectFolder_Click'
-			Content='Select Folder...'
-			HorizontalAlignment='Left'
-			Margin='10,52,0,0'
-			VerticalAlignment='Top'
-			Width='134'
-			FontSize='16'
-			Height='27' />
-		<TextBox
-			Name='TB_SelectedFolder'
-			HorizontalAlignment='Left'
-			Margin='10,94,0,0'
-			TextWrapping='Wrap'
-			Text='... (selected folder)'
-			VerticalAlignment='Top'
-			Width='470'
-			FontSize='16' />
 
-		<Button
-			Name='Btn_Export'
-			Content='Export'
-			HorizontalAlignment='Left'
-			Margin='383,313,0,0'
-			VerticalAlignment='Top'
-			Width='97'
-			Height='30'
-			FontSize='16' />
-		<TextBlock
-			Name='description_header'
-			HorizontalAlignment='Left'
-			Margin='10,10,0,0'
-			TextWrapping='Wrap'
-			Text=' DirToText exports the filenames within a selected folder to text format.'
-			VerticalAlignment='Top'
-			FontSize='15'
-			Height='24'
-			Width='470' />
 		<GroupBox
 			Header='Format '
-			Margin='10,233,275,141'
+			Margin='10,242,275,47'
 			FontSize='16'>
 			<StackPanel
-				Height='65'>
+				Height='64'>
 				<RadioButton
 					Name='RadioBtn_txt'
 					IsChecked='True'
@@ -91,6 +56,45 @@
 			</StackPanel>
 		</GroupBox>
 
+		<Button
+			Name='Btn_SelectFolder'
+			Click='Btn_SelectFolder_Click'
+			Content='Select Folder...'
+			HorizontalAlignment='Left'
+			Margin='10,39,0,0'
+			VerticalAlignment='Top'
+			Width='134'
+			FontSize='16'
+			Height='27' />
+		<TextBox
+			Name='TB_SelectedFolder'
+			HorizontalAlignment='Left'
+			Margin='10,82,0,0'
+			TextWrapping='Wrap'
+			Text='... (selected folder)'
+			VerticalAlignment='Top'
+			Width='470'
+			FontSize='16' />
+
+		<Button
+			Name='Btn_Export'
+			Content='Export'
+			HorizontalAlignment='Left'
+			Margin='383,298,0,0'
+			VerticalAlignment='Top'
+			Width='97'
+			Height='30'
+			FontSize='16' />
+		<TextBlock
+			Name='description_header'
+			HorizontalAlignment='Left'
+			Margin='10,10,0,0'
+			TextWrapping='Wrap'
+			Text=' DirToText exports the filenames within a selected folder to text format.'
+			VerticalAlignment='Top'
+			FontSize='15'
+			Height='24'
+			Width='470' />
 		<Label
 			Name='Lbl_Message'
 			Content='(message)'
@@ -104,9 +108,11 @@
 			Name='Lbl_About'
 			Content='About... (opens context box with info + link)'
 			HorizontalAlignment='Left'
-			Margin='10,355,0,0'
+			Margin='10,347,0,0'
 			VerticalAlignment='Top'
-			FontSize='14' />
+			FontSize='14'
+			Width='470'
+			Height='27' />
 
 	</Grid>
 </Window>
