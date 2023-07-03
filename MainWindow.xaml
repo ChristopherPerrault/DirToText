@@ -44,19 +44,14 @@
 				Height='64'>
 				<RadioButton
 					Name='RadioBtn_txt'
-					IsChecked='True'
 					Content='.txt'
-					 />
+					IsChecked='True' />
 				<RadioButton
 					Name='RadioBtn_csv'
-					IsChecked='False'
-					Content='.csv'
-					 />
+					Content='.csv' />
 				<RadioButton
 					Name='RadioBtn_docx'
-					IsChecked='False'
-					Content='.docx'
-					 />
+					Content='.docx' />
 			</StackPanel>
 		</GroupBox>
 

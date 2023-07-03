@@ -24,8 +24,16 @@ namespace DirToText
                 if (result == System.Windows.Forms.DialogResult.OK)
                 {
                     string selectedFolder = folderSelectDialog.SelectedPath;
-                    Lbl_SelectedFolder.Content = selectedFolder;
-                    Btn_SelectFolder.Content = "Reselect Folder...";
+                    if (!string.IsNullOrEmpty(selectedFolder))
+                    {
+                        Lbl_SelectedFolder.Content = selectedFolder;
+                        Btn_SelectFolder.Content = "Reselect Folder...";
+                    }
+                    else
+                    {
+                        TB_Message.Text = "❌ Folder has no contents!";
+                    }
+
 
                 }
             }
@@ -33,52 +41,118 @@ namespace DirToText
         private void Btn_Export_Click(object sender, RoutedEventArgs e)
         {
 
+            //string selectedFolder = Lbl_SelectedFolder.Content as string;
+            //if (!string.IsNullOrEmpty(selectedFolder) && Directory.Exists(selectedFolder))
+            //{
+            //    string[] fileNames = Directory.GetFiles(selectedFolder);
+
+            //    string selectedFormat = GetSelectedFormat();
+
+            //    string outputFile = Path.Combine(selectedFolder, "file_names" + selectedFormat);
+            //    using (StreamWriter writer = new StreamWriter(outputFile))
+            //    {
+            //        // Includes folder name at top of output file
+            //        if (ChkBox_IncludeFolderName.IsChecked == true)
+            //        {
+            //            string folderName = Path.GetFileName(selectedFolder);
+            //            writer.WriteLine("Folder: " + folderName);
+            //            writer.WriteLine();
+            //        }
+
+            //        foreach (string fileName in fileNames)
+            //        {
+            //            // Include full file path (includes file extension)
+            //            if (ChkBox_IncludeFilepath.IsChecked == true)
+            //            {
+            //                writer.WriteLine(fileName);
+            //            }
+            //            else
+            //            {
+            //                string fileNameToWrite = fileName;
+
+            //                // Exclude file extension (but if 'full file path' selected it will override this)
+            //                if (ChkBox_IncludeFileExt.IsChecked == false)
+            //                {
+            //                    fileNameToWrite = Path.GetFileNameWithoutExtension(fileName);
+            //                }
+
+            //                writer.WriteLine(fileNameToWrite);
+            //            }
+            //        }
+            //    }
+            //    TB_Message.Text = "✔ File names exported successfully to selected folder!";
+            //}
+            //else
+            //{
+            //    TB_Message.Text = "❌ Please select a valid folder first!";
+            //}
             string selectedFolder = Lbl_SelectedFolder.Content as string;
-            if (!string.IsNullOrEmpty(selectedFolder) && Directory.Exists(selectedFolder))
+            if (string.IsNullOrEmpty(selectedFolder) || !Directory.Exists(selectedFolder))
             {
-                string[] fileNames = Directory.GetFiles(selectedFolder);
+                TB_Message.Text = "❌ Folder is either empty or doesn't exist!";
+                return;
+            }
 
-                string outputFile = Path.Combine(selectedFolder, "file_names.txt");
-                using (StreamWriter writer = new StreamWriter(outputFile))
+            string[] fileNames = Directory.GetFiles(selectedFolder);
+
+            string selectedFormat = GetSelectedFormat();
+
+            string outputFile = Path.Combine(selectedFolder, "file_names" + selectedFormat);
+            using (StreamWriter writer = new StreamWriter(outputFile))
+            {
+                // Include folder name at the top of the file if the checkbox is checked
+                if (ChkBox_IncludeFolderName.IsChecked == true)
                 {
-                    // Includes folder name at top of output file
-                    if (ChkBox_IncludeFolderName.IsChecked == true)
+                    string folderName = Path.GetFileName(selectedFolder);
+                    writer.WriteLine("Folder Name: " + folderName);
+                    writer.WriteLine();
+                }
+
+                foreach (string fileName in fileNames)
+                {
+                    // Include full file path if the checkbox is checked
+                    if (ChkBox_IncludeFilepath.IsChecked == true)
                     {
-                        string folderName = Path.GetFileName(selectedFolder);
-                        writer.WriteLine("Folder: " + folderName);
-                        writer.WriteLine();
+                        writer.WriteLine(fileName);
                     }
-
-                    foreach (string fileName in fileNames)
+                    else
                     {
-                        // Include full file path (includes file extension)
-                        if (ChkBox_IncludeFilepath.IsChecked == true)
-                        {
-                            writer.WriteLine(fileName);
-                        }
-                        else
-                        {
-                            string fileNameToWrite = fileName;
+                        string fileNameToWrite = fileName;
 
-                            // Exclude file extension (but if 'full file path' selected it will override this)
-                            if (ChkBox_IncludeFileExt.IsChecked == false)
-                            {
-                                fileNameToWrite = Path.GetFileNameWithoutExtension(fileName);
-                            }
-
-                            writer.WriteLine(fileNameToWrite);
+                        // Exclude file extension if the checkbox is not checked
+                        if (ChkBox_IncludeFileExt.IsChecked == false)
+                        {
+                            fileNameToWrite = Path.GetFileNameWithoutExtension(fileName);
                         }
+
+                        writer.WriteLine(fileNameToWrite);
                     }
                 }
-                TB_Message.Text = "✔ File names exported successfully to selected folder!";
+            }
+
+            TB_Message.Text = "✔ File names exported successfully to selected folder!";
+
+
+        }
+        private string GetSelectedFormat()
+        {
+            if (RadioBtn_txt.IsChecked == true)
+            {
+                return ".txt";
+            }
+            else if (RadioBtn_docx.IsChecked == true)
+            {
+                return ".docx";
+            }
+            else if (RadioBtn_csv.IsChecked == true)
+            {
+                return ".csv";
             }
             else
             {
-                TB_Message.Text = "❌ Please select a valid folder first!";
+                return ".txt";
             }
-
         }
-
 
     }
 }
