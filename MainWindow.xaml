@@ -7,83 +7,106 @@
 	xmlns:local="clr-namespace:DirToText"
 	mc:Ignorable="d"
 	Title="DirToText"
-	Height="332"
-	Width="390">
+	Height="500"
+	Width="520"
+	ResizeMode='NoResize'>
 	<Grid>
+		<GroupBox
+			Header='Options'
+			Margin='10,120,275,0'
+			FontSize='16'
+			VerticalAlignment='Top'
+			Height='97'>
+			<StackPanel
+				Height='64'>
+				<CheckBox
+					x:Name='ChkBox_IncludeFileExt'
+					Content='Include file extension' />
+				<CheckBox
+					x:Name='ChkBox_IncludeFolderName'
+					Content='Include folder name' />
+				<CheckBox
+					x:Name='ChkBox_IncludeFilepath'
+					Content='Include full filepath' />
+			</StackPanel>
+		</GroupBox>
 		<Button
+			Name='Btn_SelectFolder'
+			Click='Btn_SelectFolder_Click'
 			Content='Select Folder...'
 			HorizontalAlignment='Left'
-			Margin='10,31,0,0'
+			Margin='10,52,0,0'
 			VerticalAlignment='Top'
-			Width='92' />
+			Width='134'
+			FontSize='16'
+			Height='27' />
 		<TextBox
-			HorizontalAlignment='Center'
-			Margin='0,61,0,0'
+			Name='TB_SelectedFolder'
+			HorizontalAlignment='Left'
+			Margin='10,94,0,0'
 			TextWrapping='Wrap'
 			Text='... (selected folder)'
 			VerticalAlignment='Top'
-			Width='370' />
-		<GroupBox
-			Header='Options'
-			Margin='10,84,10,151' />
-		<CheckBox
-			Content='Include file extension'
-			HorizontalAlignment='Left'
-			Margin='17,103,0,0'
-			VerticalAlignment='Top' />
-		<CheckBox
-			Content='Include full filepath'
-			HorizontalAlignment='Left'
-			Margin='17,123,0,0'
-			VerticalAlignment='Top' />
-		<CheckBox
-			Content='Include folder name'
-			HorizontalAlignment='Left'
-			Margin='17,143,0,0'
-			VerticalAlignment='Top' />
+			Width='470'
+			FontSize='16' />
+
 		<Button
+			Name='Btn_Export'
 			Content='Export'
 			HorizontalAlignment='Left'
-			Margin='329,227,0,0'
+			Margin='383,313,0,0'
 			VerticalAlignment='Top'
-			Width='51'
-			Height='25' />
+			Width='97'
+			Height='30'
+			FontSize='16' />
 		<TextBlock
+			Name='description_header'
 			HorizontalAlignment='Left'
 			Margin='10,10,0,0'
 			TextWrapping='Wrap'
-			Text='DirToText exports the filenames within a selected folder to text format '
-			VerticalAlignment='Top' />
-		<RadioButton
-			Content='.txt'
-			HorizontalAlignment='Left'
-			Margin='17,191,0,0'
-			VerticalAlignment='Top' />
-		<RadioButton
-			Content='.csv'
-			HorizontalAlignment='Left'
-			Margin='146,191,0,0'
+			Text=' DirToText exports the filenames within a selected folder to text format.'
 			VerticalAlignment='Top'
-			Checked='RadioButton_Checked' />
-		<RadioButton
-			Content='.docx'
-			HorizontalAlignment='Left'
-			Margin='78,191,0,0'
-			VerticalAlignment='Top' />
+			FontSize='15'
+			Height='24'
+			Width='470' />
+		<GroupBox
+			Header='Format '
+			Margin='10,233,275,141'
+			FontSize='16'>
+			<StackPanel
+				Height='65'>
+				<RadioButton
+					Name='RadioBtn_txt'
+					IsChecked='True'
+					Content='.txt' />
+				<RadioButton
+					Name='RadioBtn_csv'
+					IsChecked='False'
+					Content='.csv'
+					Checked='RadioButton_Checked' />
+				<RadioButton
+					Name='RadioBtn_docx'
+					IsChecked='False'
+					Content='.docx' />
+			</StackPanel>
+		</GroupBox>
+
 		<Label
+			Name='Lbl_Message'
 			Content='(message)'
 			HorizontalAlignment='Left'
-			Margin='10,226,0,0'
+			Margin='260,133,0,0'
 			VerticalAlignment='Top'
-			Width='310' />
+			Width='220'
+			FontSize='14'
+			Height='175' />
 		<Label
+			Name='Lbl_About'
 			Content='About... (opens context box with info + link)'
 			HorizontalAlignment='Left'
-			Margin='10,287,0,0'
-			VerticalAlignment='Top' />
-		<GroupBox
-			Header='Format'
-			Margin='10,170,10,100' />
+			Margin='10,355,0,0'
+			VerticalAlignment='Top'
+			FontSize='14' />
 
 	</Grid>
 </Window>

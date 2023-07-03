@@ -29,5 +29,10 @@ namespace DirToText
         {
 
         }
+
+        private void Btn_SelectFolder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
