@@ -26,16 +26,13 @@
 				Height='64'>
 				<CheckBox
 					x:Name='ChkBox_IncludeFileExt'
-					Content='Include file extensions'
-					 />
+					Content='Include file extensions' />
 				<CheckBox
 					x:Name='ChkBox_IncludeFolderName'
-					Content='Include folder name'
-					 />
+					Content='Include folder name' />
 				<CheckBox
 					x:Name='ChkBox_IncludeFilepath'
-					Content='Include full filepath'
-					 />
+					Content='Include full filepath' />
 			</StackPanel>
 		</GroupBox>
 
@@ -49,17 +46,17 @@
 					Name='RadioBtn_txt'
 					IsChecked='True'
 					Content='.txt'
-					Checked='RadioBtn_txt_Checked' />
+					 />
 				<RadioButton
 					Name='RadioBtn_csv'
 					IsChecked='False'
 					Content='.csv'
-					Checked='RadioBtn_csv_Checked' />
+					 />
 				<RadioButton
 					Name='RadioBtn_docx'
 					IsChecked='False'
 					Content='.docx'
-					Checked='RadioBtn_docx_Checked' />
+					 />
 			</StackPanel>
 		</GroupBox>
 

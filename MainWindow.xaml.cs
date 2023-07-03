@@ -32,7 +32,7 @@ namespace DirToText
         }
         private void Btn_Export_Click(object sender, RoutedEventArgs e)
         {
-          
+
             string selectedFolder = Lbl_SelectedFolder.Content as string;
             if (!string.IsNullOrEmpty(selectedFolder) && Directory.Exists(selectedFolder))
             {
@@ -76,9 +76,9 @@ namespace DirToText
             {
                 TB_Message.Text = "❌ Please select a valid folder first!";
             }
-           
+
         }
 
-      
+
     }
 }
