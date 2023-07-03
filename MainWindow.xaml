@@ -20,17 +20,21 @@
 			FontSize='16'
 			VerticalAlignment='Top'
 			Height='100'>
+
 			<StackPanel
 				Height='64'>
 				<CheckBox
 					x:Name='ChkBox_IncludeFileExt'
-					Content='Include file extension' />
+					Content='Include file extensions'
+					Checked='ChkBox_IncludeFileExt_Checked' />
 				<CheckBox
 					x:Name='ChkBox_IncludeFolderName'
-					Content='Include folder name' />
+					Content='Include folder name'
+					Checked='ChkBox_IncludeFolderName_Checked' />
 				<CheckBox
 					x:Name='ChkBox_IncludeFilepath'
-					Content='Include full filepath' />
+					Content='Include full filepath'
+					Checked='ChkBox_IncludeFilepath_Checked' />
 			</StackPanel>
 		</GroupBox>
 
@@ -43,16 +47,18 @@
 				<RadioButton
 					Name='RadioBtn_txt'
 					IsChecked='True'
-					Content='.txt' />
+					Content='.txt'
+					Checked='RadioBtn_txt_Checked' />
 				<RadioButton
 					Name='RadioBtn_csv'
 					IsChecked='False'
 					Content='.csv'
-					Checked='RadioButton_Checked' />
+					Checked='RadioBtn_csv_Checked' />
 				<RadioButton
 					Name='RadioBtn_docx'
 					IsChecked='False'
-					Content='.docx' />
+					Content='.docx'
+					Checked='RadioBtn_docx_Checked' />
 			</StackPanel>
 		</GroupBox>
 
@@ -66,18 +72,10 @@
 			Width='134'
 			FontSize='16'
 			Height='27' />
-		<TextBox
-			Name='TB_SelectedFolder'
-			HorizontalAlignment='Left'
-			Margin='10,82,0,0'
-			TextWrapping='Wrap'
-			Text='... (selected folder)'
-			VerticalAlignment='Top'
-			Width='470'
-			FontSize='16' />
 
 		<Button
 			Name='Btn_Export'
+			Click='Btn_Export_Click'
 			Content='Export'
 			HorizontalAlignment='Left'
 			Margin='383,298,0,0'
@@ -85,16 +83,27 @@
 			Width='97'
 			Height='30'
 			FontSize='16' />
+
+		<Label
+			Name='Lbl_SelectedFolder'
+			HorizontalAlignment='Left'
+			Margin='10,82,0,0'
+			Content='...'
+			VerticalAlignment='Top'
+			Width='470'
+			FontSize='16' />
+
 		<TextBlock
 			Name='description_header'
 			HorizontalAlignment='Left'
 			Margin='10,10,0,0'
 			TextWrapping='Wrap'
-			Text=' DirToText exports the filenames within a selected folder to text format.'
+			Text='DirToText exports the filenames within a selected folder to text format.'
 			VerticalAlignment='Top'
 			FontSize='15'
 			Height='24'
 			Width='470' />
+
 		<Label
 			Name='Lbl_Message'
 			Content='(message)'
@@ -104,6 +113,7 @@
 			Width='220'
 			FontSize='14'
 			Height='175' />
+
 		<Label
 			Name='Lbl_About'
 			Content='About... (opens context box with info + link)'
