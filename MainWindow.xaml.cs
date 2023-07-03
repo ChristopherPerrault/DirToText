@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.IO;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace DirToText
@@ -16,51 +17,68 @@ namespace DirToText
 
         private void Btn_SelectFolder_Click(object sender, RoutedEventArgs e)
         {
-            using (var dialog = new FolderBrowserDialog())
+            using (var folderSelectDialog = new FolderBrowserDialog())
             {
-                DialogResult result = dialog.ShowDialog();
+                DialogResult result = folderSelectDialog.ShowDialog();
+
                 if (result == System.Windows.Forms.DialogResult.OK)
                 {
-                    string selectedFolder = dialog.SelectedPath;
+                    string selectedFolder = folderSelectDialog.SelectedPath;
                     Lbl_SelectedFolder.Content = selectedFolder;
                     Btn_SelectFolder.Content = "Reselect Folder...";
+
                 }
             }
         }
-
-        private void ChkBox_IncludeFileExt_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ChkBox_IncludeFolderName_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ChkBox_IncludeFilepath_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RadioBtn_csv_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RadioBtn_txt_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void RadioBtn_docx_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Btn_Export_Click(object sender, RoutedEventArgs e)
         {
+          
+            string selectedFolder = Lbl_SelectedFolder.Content as string;
+            if (!string.IsNullOrEmpty(selectedFolder) && Directory.Exists(selectedFolder))
+            {
+                string[] fileNames = Directory.GetFiles(selectedFolder);
 
+                string outputFile = Path.Combine(selectedFolder, "file_names.txt");
+                using (StreamWriter writer = new StreamWriter(outputFile))
+                {
+                    // Includes folder name at top of output file
+                    if (ChkBox_IncludeFolderName.IsChecked == true)
+                    {
+                        string folderName = Path.GetFileName(selectedFolder);
+                        writer.WriteLine("Folder: " + folderName);
+                        writer.WriteLine();
+                    }
+
+                    foreach (string fileName in fileNames)
+                    {
+                        // Include full file path (includes file extension)
+                        if (ChkBox_IncludeFilepath.IsChecked == true)
+                        {
+                            writer.WriteLine(fileName);
+                        }
+                        else
+                        {
+                            string fileNameToWrite = fileName;
+
+                            // Exclude file extension (but if 'full file path' selected it will override this)
+                            if (ChkBox_IncludeFileExt.IsChecked == false)
+                            {
+                                fileNameToWrite = Path.GetFileNameWithoutExtension(fileName);
+                            }
+
+                            writer.WriteLine(fileNameToWrite);
+                        }
+                    }
+                }
+                TB_Message.Text = "✔ File names exported successfully to selected folder!";
+            }
+            else
+            {
+                TB_Message.Text = "❌ Please select a valid folder first!";
+            }
+           
         }
+
+      
     }
 }

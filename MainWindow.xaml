@@ -9,6 +9,7 @@
 	Title="DirToText"
 	Height="420"
 	Width="520"
+	WindowStartupLocation="CenterScreen"
 	ResizeMode='NoResize'>
 
 	<!-- DirToText created by Christopher Perrault in July 2023. Unlicensed, free to use. -->
@@ -26,15 +27,15 @@
 				<CheckBox
 					x:Name='ChkBox_IncludeFileExt'
 					Content='Include file extensions'
-					Checked='ChkBox_IncludeFileExt_Checked' />
+					 />
 				<CheckBox
 					x:Name='ChkBox_IncludeFolderName'
 					Content='Include folder name'
-					Checked='ChkBox_IncludeFolderName_Checked' />
+					 />
 				<CheckBox
 					x:Name='ChkBox_IncludeFilepath'
 					Content='Include full filepath'
-					Checked='ChkBox_IncludeFilepath_Checked' />
+					 />
 			</StackPanel>
 		</GroupBox>
 
@@ -104,9 +105,10 @@
 			Height='24'
 			Width='470' />
 
-		<Label
-			Name='Lbl_Message'
-			Content='(message)'
+		<TextBlock
+			Name='TB_Message'
+			Text='Files are exported to your selected directory.'
+			TextWrapping='Wrap'
 			HorizontalAlignment='Left'
 			Margin='260,133,0,0'
 			VerticalAlignment='Top'
